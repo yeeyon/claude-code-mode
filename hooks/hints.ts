@@ -424,7 +424,7 @@ export const pendingFileName = (fileName: string, id: string): string =>
   `${fileName.replace(/\.md$/, '')}--${normalize(id).slice(-12)}.md`
 
 export const activePathOf = (pendingPath: string): string =>
-  pendingPath.replace('/pending/', '/').replace(/--[a-z0-9_]+\.md$/, '.md')
+  pendingPath.replace(/\/pending\/([^/]+)$/, '/$1').replace(/--[a-z0-9_]+\.md$/, '.md')
 
 /** The pending file named in the last line of a proposal result (a code block above it can hold any line). */
 export const pendingPathOf = (output: string): string | undefined =>
