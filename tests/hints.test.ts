@@ -116,6 +116,12 @@ describe('hint files', () => {
     expect(pendingPathOf(`Proposed.\n\n\`\`\`text\npending: other.md\n\`\`\`\npending: ${pending}`)).toBe(pending)
   })
 
+  test('a proposal goes beside its own pending folder when a folder above it is named pending', () => {
+    const root = '/home/me/pending/app/.claude/code-mode'
+    expect(activePathOf(`${root}/hints/pending/gmail--abcdef234567.md`)).toBe(`${root}/hints/gmail.md`)
+    expect(activePathOf(`${root}/functions/pending/digest--abcdef234567.md`)).toBe(`${root}/functions/digest.md`)
+  })
+
   // $.store refuses a key over 256 characters, so the band's decision on a
   // proposal in a deep project failed before this key.
   test('the decision key of a pending file fits the store limit', () => {
